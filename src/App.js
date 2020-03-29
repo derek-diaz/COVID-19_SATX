@@ -60,10 +60,10 @@ const rectangle = [
     [51.5, -0.06],
 ]
 
-function generateCircles(dataSet, color, text) {
+function generateCircles(dataSet, color, text, radius) {
     let subData = dataSet;
     return subData.map(val => (
-        <CircleMarker center={[parseFloat(val.geo[0]), parseFloat(val.geo[1])]} fillColor={color} color={color} radius={10}>
+        <CircleMarker center={[parseFloat(val.geo[0]), parseFloat(val.geo[1])]} fillColor={color} color={color} radius={radius}>
             <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
                 <span>{val.zipcode + ": " + text}</span>
             </Tooltip>
@@ -86,9 +86,9 @@ function App() {
                 <CircleMarker center={[51.51, -0.12]} color="red" radius={20}>
                     <Popup>Popup in CircleMarker</Popup>
                 </CircleMarker>
-                {generateCircles(data.zipCodeCases.cases_one_to_four, "blue", "1 to 4 Cases")}
-                {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange", "5 to 8 Cases")}
-                {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red", "9 to 12 Cases")}
+                {generateCircles(data.zipCodeCases.cases_one_to_four, "blue", "1 to 4 Cases", 10)}
+                {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange", "5 to 8 Cases", 20)}
+                {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red", "9 to 12 Cases", 30)}
                 <Polyline color="lime" positions={polyline}/>
                 <Polyline color="lime" positions={multiPolyline}/>
                 <Polygon color="purple" positions={polygon}/>

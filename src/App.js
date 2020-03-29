@@ -10,6 +10,7 @@ import {
     Popup,
     Rectangle,
     TileLayer,
+    Tooltip
 } from 'react-leaflet'
 
 import data from './satx-covid-19';
@@ -59,10 +60,14 @@ const rectangle = [
     [51.5, -0.06],
 ]
 
-function generateCircles(dataSet, color) {
+function generateCircles(dataSet, color, text) {
     let subData = dataSet;
     return subData.map(val => (
-            <Circle center={[parseFloat(val.geo[0]), parseFloat(val.geo[1])]} fillColor={color} color={color} radius={700}/>)
+        <CircleMarker center={[parseFloat(val.geo[0]), parseFloat(val.geo[1])]} fillColor={color} color={color} radius={10}>
+            <Tooltip direction="right" offset={[-8, -2]} opacity={1}>
+                <span>{val.zipcode + ": " + text}</span>
+            </Tooltip>
+        </CircleMarker>)
     );
 }
 
@@ -81,9 +86,9 @@ function App() {
                 <CircleMarker center={[51.51, -0.12]} color="red" radius={20}>
                     <Popup>Popup in CircleMarker</Popup>
                 </CircleMarker>
-                {generateCircles(data.zipCodeCases.cases_one_to_four, "blue")}
-                {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange")}
-                {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red")}
+                {generateCircles(data.zipCodeCases.cases_one_to_four, "blue", "1 to 4 Cases")}
+                {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange", "5 to 8 Cases")}
+                {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red", "9 to 12 Cases")}
                 <Polyline color="lime" positions={polyline}/>
                 <Polyline color="lime" positions={multiPolyline}/>
                 <Polygon color="purple" positions={polygon}/>

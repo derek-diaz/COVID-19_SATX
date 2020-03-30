@@ -103,6 +103,7 @@ function App() {
                         <Link href="https://www.sanantonio.gov/health/news/alerts/coronavirus">
                             &nbsp;here.
                         </Link></p>
+                        <p>Open-Source code located <Link href="https://github.com/derek-diaz/COVID-19_SATX">here.</Link></p>
                     </Paper>
 
                 </Grid>

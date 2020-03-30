@@ -78,10 +78,10 @@ function App() {
                             Confirmed Cases
                         </Typography>
                         <Typography component="p" variant="h4">
-                            140
+                            157
                         </Typography>
-                        <p>Male: 77</p>
-                        <p>Female: 63</p>
+                        <p>Male: 85</p>
+                        <p>Female: 72</p>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
@@ -98,7 +98,7 @@ function App() {
                 </Grid>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <p>Last Updated: 3/28/2020 7:00pm</p>
+                        <p>Last Updated: 3/29/2020 7:00pm</p>
                         <p>This website is not associated in any way to the City of San Antonio. The data used on this site comes from
                         <Link href="https://www.sanantonio.gov/health/news/alerts/coronavirus">
                             &nbsp;here.

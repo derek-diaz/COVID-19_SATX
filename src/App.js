@@ -1,64 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {
-    Circle,
     CircleMarker,
     Map,
-    Polygon,
-    Polyline,
-    Popup,
-    Rectangle,
     TileLayer,
     Tooltip
 } from 'react-leaflet'
-
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import data from './satx-covid-19';
 
-const center = [29.419414, -98.495404]
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+}));
 
-const polyline = [
-    [51.505, -0.09],
-    [51.51, -0.1],
-    [51.51, -0.12],
-]
-
-const multiPolyline = [
-    [
-        [51.5, -0.1],
-        [51.5, -0.12],
-        [51.52, -0.12],
-    ],
-    [
-        [51.5, -0.05],
-        [51.5, -0.06],
-        [51.52, -0.06],
-    ],
-]
-
-const polygon = [
-    [51.515, -0.09],
-    [51.52, -0.1],
-    [51.52, -0.12],
-]
-
-const multiPolygon = [
-    [
-        [51.51, -0.12],
-        [51.51, -0.13],
-        [51.53, -0.13],
-    ],
-    [
-        [51.51, -0.05],
-        [51.51, -0.07],
-        [51.53, -0.07],
-    ],
-]
-
-const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-]
+const center = [29.419414, -98.495404];
 
 function generateCircles(dataSet, color, text, radius) {
     let subData = dataSet;
@@ -71,30 +45,68 @@ function generateCircles(dataSet, color, text, radius) {
     );
 }
 
-
 function App() {
-
+    const classes = useStyles();
 
     return (
-        <div className="App">
-            <Map center={center} zoom={10}>
-                <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Circle center={center} fillColor="blue" radius={200}/>
-                <CircleMarker center={[51.51, -0.12]} color="red" radius={20}>
-                    <Popup>Popup in CircleMarker</Popup>
-                </CircleMarker>
-                {generateCircles(data.zipCodeCases.cases_one_to_four, "blue", "1 to 4 Cases", 10)}
-                {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange", "5 to 8 Cases", 20)}
-                {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red", "9 to 12 Cases", 30)}
-                <Polyline color="lime" positions={polyline}/>
-                <Polyline color="lime" positions={multiPolyline}/>
-                <Polygon color="purple" positions={polygon}/>
-                <Polygon color="purple" positions={multiPolygon}/>
-                <Rectangle bounds={rectangle} color="black"/>
-            </Map>
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" className={classes.title}>
+                       Coronavirus COVID-19 - San Antonio Confirmed Cases
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
+                        <Map center={center} zoom={10}>
+                            <TileLayer
+                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            {generateCircles(data.zipCodeCases.cases_one_to_four, "blue", "1 to 4 Cases", 10)}
+                            {generateCircles(data.zipCodeCases.cases_five_to_eight, "orange", "5 to 8 Cases", 20)}
+                            {generateCircles(data.zipCodeCases.cases_nine_to_twelve, "red", "9 to 12 Cases", 30)}
+                        </Map>
+                    </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                            Confirmed Cases
+                        </Typography>
+                        <Typography component="p" variant="h4">
+                            140
+                        </Typography>
+                        <p>Male: 77</p>
+                        <p>Female: 63</p>
+                    </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                            Total Death
+                        </Typography>
+                        <Typography component="p" variant="h4">
+                            5
+                        </Typography>
+                        <p>Male: 0</p>
+                        <p>Female: 5</p>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
+                        <p>Last Updated: 3/28/2020 7:00pm</p>
+                        <p>This website is not associated in any way to the City of San Antonio. The data used on this site comes from
+                        <Link href="https://www.sanantonio.gov/health/news/alerts/coronavirus">
+                            &nbsp;here.
+                        </Link></p>
+                    </Paper>
+
+                </Grid>
+            </Grid>
         </div>
     );
 }

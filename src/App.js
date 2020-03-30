@@ -53,7 +53,7 @@ function App() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                       Coronavirus COVID-19 - San Antonio Confirmed Cases
+                       Coronavirus COVID-19 - San Antonio, TX
                     </Typography>
                 </Toolbar>
             </AppBar>

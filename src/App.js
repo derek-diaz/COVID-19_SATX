@@ -55,6 +55,9 @@ function App() {
                     <Typography variant="h6" className={classes.title}>
                        Coronavirus COVID-19 - San Antonio, TX
                     </Typography>
+                    <Typography variant="caption">
+                        Last Updated: 3/29/2020 7:00pm
+                    </Typography>
                 </Toolbar>
             </AppBar>
 

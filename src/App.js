@@ -64,6 +64,16 @@ function App() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
+                        <h1>The City of San Antonio has an official dashboard. </h1>
+                        <h1> <Link href="https://www.sanantonio.gov/covid19">
+                            https://www.sanantonio.gov/covid19
+                        </Link></h1>
+                        <h1>Stay Safe!</h1>
+                    </Paper>
+
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
                         <Map center={center} zoom={10}>
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -90,7 +100,7 @@ function App() {
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                            Total Death
+                            Total Deaths
                         </Typography>
                         <Typography component="p" variant="h4">
                             5
